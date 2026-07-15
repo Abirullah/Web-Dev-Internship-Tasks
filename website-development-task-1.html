@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Development Process Using AI Tools</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #fcf7e8 0%, #fffdf7 100%);
+        color: #222;
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 18px 40px;
+      }
+
+      .hero,
+      .card,
+      .cta {
+        background: #ffffff;
+        border: 1px solid #f0e6bf;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+        animation: fadeUp 0.8s ease both;
+      }
+
+      .hero {
+        padding: 32px;
+      }
+
+
+      h1 {
+        font-size: clamp(28px, 3.2vw, 40px);
+        margin: 0 0 12px;
+        color: #1e1e1e;
+      }
+
+      .intro {
+        margin: 0 0 18px;
+        color: #5b5b5b;
+        max-width: 700px;
+        font-size: 16px;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 10px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: #f2c94c;
+        color: #1f1f1f;
+        box-shadow: 0 6px 14px rgba(242, 201, 76, 0.25);
+      }
+
+      .btn-secondary {
+        background: #f9f4e5;
+        color: #6b4f00;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        color: #222;
+      }
+
+      .card p {
+        margin: 0 0 12px;
+        color: #5e5e5e;
+      }
+
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .steps li {
+        padding: 12px 14px;
+        background: #fcfbf7;
+        border: 1px solid #efe7c9;
+        border-radius: 12px;
+      }
+
+      .steps strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #1a1a1a;
+      }
+
+      .cta {
+        margin-top: 18px;
+        padding: 24px;
+        text-align: center;
+        animation-delay: 0.2s;
+      }
+
+      .cta h3 {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+
+      .cta p {
+        margin: 0 0 14px;
+        color: #5c5c5c;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 800px) {
+        .content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero, .card, .cta {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <h1>A simple, modern page for the website development process</h1>
+        <p class="intro">
+          AI tools help teams build websites faster by supporting planning, content writing, design ideas, development, and launch in a clear step-by-step workflow.
+        </p>
+        <div class="btn-row">
+          <a href="#" class="btn btn-primary">Get Started</a>
+          <a href="#" class="btn btn-secondary">View Process</a>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="card">
+          <h2>Development Steps</h2>
+          <p>Each step is simple and organized so the page feels clean and professional.</p>
+          <ul class="steps">
+            <li><strong>1. Planning</strong>Define the goal, audience, and page structure.</li>
+            <li><strong>2. Content</strong>Create headings, text, and SEO-friendly copy.</li>
+            <li><strong>3. Design</strong>Build a clean layout with clear sections.</li>
+            <li><strong>4. Development</strong>Turn the design into a working website.</li>
+            <li><strong>5. Launch</strong>Test, publish, and improve after launch.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Why AI Helps</h2>
+          <p>AI makes the process faster, clearer, and easier to manage.</p>
+          <ul class="steps">
+            <li><strong>Faster Work</strong>Reduces time spent on repeated tasks.</li>
+            <li><strong>Better Content</strong>Helps create clear and useful website text.</li>
+            <li><strong>Smoother Workflow</strong>Supports planning and execution from start to finish.</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="cta">
+        <h3>Ready to build your website with AI?</h3>
+        <p>This section is now cleaner, more organized, and ready for Elementor.</p>
+        <a href="#" class="btn btn-primary">Start Now</a>
+      </section>
+    </div>
+  </body>
+</html>

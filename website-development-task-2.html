@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Powered Industrial Intelligence Platform</title>
+    <style>
+      :root {
+        --bg: #fcf8eb;
+        --panel: #ffffff;
+        --text: #17212b;
+        --muted: #607085;
+        --accent: #f2c94c;
+        --accent-2: #f7dd87;
+        --border: #efe3b5;
+        --shadow: 0 12px 35px rgba(23, 33, 43, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background: linear-gradient(135deg, var(--bg) 0%, #fffdf7 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 22px 18px 40px;
+      }
+
+      .nav, .hero, .section, .footer {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 22px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        font-weight: 800;
+        font-size: 18px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover { transform: translateY(-2px); }
+      .btn-primary {
+        background: var(--accent);
+        color: #1f1f1f;
+        box-shadow: 0 8px 18px rgba(242, 201, 76, 0.25);
+      }
+      .btn-secondary {
+        background: #f9f3db;
+        color: #6b4f00;
+      }
+
+      .hero {
+        padding: 32px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(30px, 3.4vw, 46px);
+        line-height: 1.15;
+        margin: 0 0 12px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin: 0 0 16px;
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .mini-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .mini-tags span {
+        background: #fcf5df;
+        color: #8a6500;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .dashboard {
+        background: linear-gradient(135deg, #162231 0%, #23364a 100%);
+        border-radius: 20px;
+        padding: 18px;
+        color: white;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      }
+
+      .dashboard-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .chip {
+        background: rgba(255,255,255,0.12);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+      }
+
+      .graph {
+        height: 140px;
+        background: linear-gradient(180deg, rgba(242,201,76,0.28), rgba(255,255,255,0.04));
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .graph::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+        transform: translateX(-100%);
+        animation: shimmer 2s infinite;
+      }
+
+      .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .grid-cards div {
+        padding: 10px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 12px;
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 24px;
+        margin-top: 18px;
+      }
+
+      .section h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .section p { color: var(--muted); margin: 0; }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .stat-card, .feature-card, .step-card, .quote-card, .price-card {
+        background: #fcfbf7;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: 22px;
+        color: var(--text);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .feature-card h3, .step-card h3, .price-card h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .step-card .num {
+        display: inline-block;
+        background: var(--accent);
+        color: #1f1f1f;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .quotes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .price-card.popular {
+        border: 2px solid var(--accent);
+        background: linear-gradient(135deg, #fff9df 0%, #ffffff 100%);
+      }
+
+      .footer {
+        padding: 24px;
+        margin-top: 18px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: all 0.6s ease;
+      }
+      .reveal.show { opacity: 1; transform: translateY(0); }
+
+      @keyframes shimmer {
+        100% { transform: translateX(100%); }
+      }
+
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; }
+        .stats, .features, .workflow, .quotes, .price-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .nav { flex-direction: column; gap: 10px; }
+        .nav-links { flex-wrap: wrap; justify-content: center; }
+        .stats, .features, .workflow, .quotes, .price-grid { grid-template-columns: 1fr; }
+        .hero, .section, .footer { padding: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav reveal">
+        <div class="brand">Aperture AIoT</div>
+        <div class="nav-links">
+          <span>Platform</span>
+          <span>Features</span>
+          <span>Pricing</span>
+          <span>Contact</span>
+        </div>
+        <a href="#" class="btn btn-primary">Book Demo</a>
+      </nav>
+
+      <section class="hero reveal">
+        <div>
+          <h1>Transform industrial data into AI-powered intelligence.</h1>
+          <p>Scalable AI and IoT systems that convert operations into real-time automation, insights, and smart decision-making.</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-secondary">Watch Demo</a>
+          </div>
+          <div class="mini-tags">
+            <span>Predictive Analytics</span>
+            <span>Smart Automation</span>
+            <span>Enterprise Security</span>
+          </div>
+        </div>
+        <div class="dashboard">
+          <div class="dashboard-top">
+            <strong>AI Operations Center</strong>
+            <span class="chip">Live Monitoring</span>
+          </div>
+          <div class="graph"></div>
+          <div class="grid-cards">
+            <div>92% Prediction Accuracy</div>
+            <div>24/7 Device Sync</div>
+            <div>Real-Time Alerts</div>
+            <div>Risk Reduction</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h2>Trusted by modern industrial teams</h2>
+        <p>Built for companies managing complex systems, factories, and connected devices.</p>
+        <div class="stats">
+          <div class="stat-card"><strong>120+</strong><span>Enterprise Clients</span></div>
+          <div class="stat-card"><strong>99.9%</strong><span>Uptime</span></div>
+          <div class="stat-card"><strong>3x</strong><span>Faster Decisions</span></div>
+          <div class="stat-card"><strong>40%</strong><span>Operational Efficiency</span></div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h2>Core features for intelligent operations</h2>
+        <div class="features">
+          <div class="feature-card">
+            <h3>AI Dashboards</h3>
+            <p>Monitor devices, sensor streams, and workflows in one intelligent view.</p>
+          </div>
+          <div class="feature-card">
+            <h3>IoT Connectivity</h3>
+            <p>Connect factories and remote locations with secure, scalable automation.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Smart Insights</h3>
+            <p>Turn raw industrial data into actionable reports and predictive alerts.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h2>How the workflow works</h2>
+        <div class="workflow">
+          <div class="step-card">
+            <div class="num">1</div>
+            <h3>Collect Data</h3>
+            <p>Gather real-time information from machines, sensors, and operating systems.</p>
+          </div>
+          <div class="step-card">
+            <div class="num">2</div>
+            <h3>Analyze Intelligence</h3>
+            <p>Use AI models to detect patterns, anomalies, and opportunities.</p>
+          </div>
+          <div class="step-card">
+            <div class="num">3</div>
+            <h3>Automate Actions</h3>
+            <p>Trigger smart actions and improve reliability across operations.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h2>What customers say</h2>
+        <div class="quotes">
+          <div class="quote-card">
+            <p>“The platform helped us reduce downtime and improve decision-making in days.”</p>
+            <strong>— Sarah Chen, Operations Lead</strong>
+          </div>
+          <div class="quote-card">
+            <p>“Modern design, strong automation, and excellent visibility across our systems.”</p>
+            <strong>— Daniel Foster, CTO</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h2>Simple pricing</h2>
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>Starter</h3>
+            <p>For small teams building their first smart workflow.</p>
+            <strong>$29/mo</strong>
+          </div>
+          <div class="price-card popular">
+            <h3>Growth</h3>
+            <p>Perfect for scaling industrial operations with more automation.</p>
+            <strong>$89/mo</strong>
+          </div>
+          <div class="price-card">
+            <h3>Enterprise</h3>
+            <p>Advanced controls, security, and custom integrations.</p>
+            <strong>Custom</strong>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer reveal">
+        <p>© 2026 Aperture AIoT. Clean, modern, and ready for Elementor.</p>
+      </footer>
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
