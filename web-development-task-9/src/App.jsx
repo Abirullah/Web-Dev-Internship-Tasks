@@ -1,158 +1,70 @@
-import { useEffect, useMemo, useState } from "react";
-import "./App.css";
-import ProductsPage from "./pages/ProductsPage";
-import CartPage from "./pages/CartPage";
+import React, { useState, useEffect } from 'react';
+import SubjectForm from './components/SubjectForm';
+import SubjectList from './components/SubjectList';
+import Stats from './components/Stats';
+import './App.css';
 
-const PRODUCTS = [
-  { id: 1, name: "Wireless Over-Ear Headphones", price: 89.99, image: "https://picsum.photos/seed/headphones/300/300", category: "Electronics" },
-  { id: 2, name: "Mechanical Keyboard", price: 64.5, image: "https://picsum.photos/seed/keyboard/300/300", category: "Electronics" },
-  { id: 3, name: "Ceramic Pour-Over Set", price: 34.0, image: "https://picsum.photos/seed/coffee/300/300", category: "Home" },
-  { id: 4, name: "Canvas Weekender Bag", price: 76.25, image: "https://picsum.photos/seed/bag/300/300", category: "Apparel" },
-  { id: 5, name: "Minimalist Desk Lamp", price: 42.99, image: "https://picsum.photos/seed/lamp/300/300", category: "Home" },
-  { id: 6, name: "Merino Wool Beanie", price: 24.0, image: "https://picsum.photos/seed/beanie/300/300", category: "Apparel" },
-  { id: 7, name: "Portable Bluetooth Speaker", price: 55.75, image: "https://picsum.photos/seed/speaker/300/300", category: "Electronics" },
-  { id: 8, name: "Stainless Steel Water Bottle", price: 19.99, image: "https://picsum.photos/seed/bottle/300/300", category: "Home" },
-];
-
-const VIEWS = {
-  PRODUCTS: "products",
-  CART: "cart",
-};
-
-export default function App() {
-  const [cart, setCart] = useState([]); // [{ id, quantity }]
-  const [activeView, setActiveView] = useState(VIEWS.PRODUCTS);
+function App() {
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    document.title =
-      activeView === VIEWS.PRODUCTS
-        ? "Products | Fieldstone Goods"
-        : "Cart | Fieldstone Goods";
-  }, [activeView]);
-
-  const addToCart = (productId) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === productId);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-        );
+    const savedSubjects = localStorage.getItem('educationPlannerSubjects');
+    if (savedSubjects) {
+      try {
+        setSubjects(JSON.parse(savedSubjects));
+      } catch (error) {
+        console.error('Error loading data:', error);
       }
-      return [...prev, { id: productId, quantity: 1 }];
-    });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('educationPlannerSubjects', JSON.stringify(subjects));
+  }, [subjects]);
+
+  const addSubject = (subjectName, hours) => {
+    const newSubject = {
+      id: Date.now(),
+      name: subjectName,
+      hours: parseInt(hours) || 0,
+    };
+    setSubjects([...subjects, newSubject]);
   };
 
-  const increaseQty = (productId) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+  const deleteSubject = (id) => {
+    setSubjects(subjects.filter(subject => subject.id !== id));
+  };
+
+  const updateHours = (id, newHours) => {
+    setSubjects(
+      subjects.map(subject =>
+        subject.id === id
+          ? { ...subject, hours: Math.max(0, newHours) }
+          : subject
       )
     );
   };
 
-  const decreaseQty = (productId) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-  };
-
-  const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((item) => item.id !== productId));
-  };
-
-  const clearCart = () => setCart([]);
-
-  // Merge cart entries with full product info so children never need to
-  // look products up themselves — they just render what they're given.
-  const cartDetails = useMemo(
-    () =>
-      cart
-        .map((item) => {
-          const product = PRODUCTS.find((p) => p.id === item.id);
-          if (!product) return null;
-          return { ...product, quantity: item.quantity, lineTotal: product.price * item.quantity };
-        })
-        .filter(Boolean),
-    [cart]
-  );
-
-  const totalCost = useMemo(
-    () => cartDetails.reduce((sum, item) => sum + item.lineTotal, 0),
-    [cartDetails]
-  );
-
-  const totalItems = useMemo(
-    () => cart.reduce((sum, item) => sum + item.quantity, 0),
-    [cart]
-  );
-
-  const quantityInCart = (productId) =>
-    cart.find((item) => item.id === productId)?.quantity || 0;
-
   return (
-    <div className="app-shell">
-      <header className="app-header">
-        <div className="app-header__inner">
-          <div className="brand">
-            <h1 className="brand__title">
-              Fieldstone <span>Goods</span>
-            </h1>
-            <p className="brand__subtitle">
-              {totalItems} item{totalItems === 1 ? "" : "s"} in cart
-            </p>
-          </div>
+    <div className="planner-shell">
+      <div className="planner-shell__inner">
+        <header className="app-header">
+          <h1 className="app-title">Education Planner</h1>
 
-          <nav className="page-switcher" aria-label="Switch between pages">
-            <button
-              type="button"
-              className={`page-switcher__button ${
-                activeView === VIEWS.PRODUCTS ? "page-switcher__button--active" : ""
-              }`}
-              aria-pressed={activeView === VIEWS.PRODUCTS}
-              onClick={() => setActiveView(VIEWS.PRODUCTS)}
-            >
-              Products
-            </button>
-            <button
-              type="button"
-              className={`page-switcher__button ${
-                activeView === VIEWS.CART ? "page-switcher__button--active" : ""
-              }`}
-              aria-pressed={activeView === VIEWS.CART}
-              onClick={() => setActiveView(VIEWS.CART)}
-            >
-              Cart
-              <span className="page-switcher__badge">{totalItems}</span>
-            </button>
-          </nav>
-        </div>
-      </header>
+        </header>
 
-      <main className="page-shell">
-        {activeView === VIEWS.PRODUCTS ? (
-          <ProductsPage
-            products={PRODUCTS}
-            quantityInCart={quantityInCart}
-            onAdd={addToCart}
-            onGoToCart={() => setActiveView(VIEWS.CART)}
-            totalItems={totalItems}
+        <main className="app-card">
+          <SubjectForm onAddSubject={addSubject} />
+          <Stats subjects={subjects} />
+          <SubjectList
+            subjects={subjects}
+            onDeleteSubject={deleteSubject}
+            onUpdateHours={updateHours}
           />
-        ) : (
-          <CartPage
-            items={cartDetails}
-            totalCost={totalCost}
-            onIncrease={increaseQty}
-            onDecrease={decreaseQty}
-            onRemove={removeFromCart}
-            onClear={clearCart}
-            onGoToProducts={() => setActiveView(VIEWS.PRODUCTS)}
-          />
-        )}
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
+
+export default App;

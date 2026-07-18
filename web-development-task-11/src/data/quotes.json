@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "quote": "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors—it's how you combine them that sets you apart.",
+    "author": "Wolfgang Puck",
+    "role": "Chef & Restaurateur",
+    "category": "Creativity"
+  },
+  {
+    "id": 2,
+    "quote": "People who love to eat are always the best people.",
+    "author": "Julia Child",
+    "role": "Chef & Author",
+    "category": "Food Philosophy"
+  },
+  {
+    "id": 3,
+    "quote": "Food is not just eating energy. It's an experience.",
+    "author": "Guy Fieri",
+    "role": "Restaurateur & TV Host",
+    "category": "Experience"
+  },
+  {
+    "id": 4,
+    "quote": "The only time to eat diet food is while you're waiting for the steak to cook.",
+    "author": "Julia Child",
+    "role": "Chef & Author",
+    "category": "Humor"
+  },
+  {
+    "id": 5,
+    "quote": "A recipe has no soul. You, as the cook, must bring soul to the recipe.",
+    "author": "Thomas Keller",
+    "role": "Chef & Restaurateur",
+    "category": "Cooking Philosophy"
+  },
+  {
+    "id": 6,
+    "quote": "If you're afraid of butter, use cream.",
+    "author": "Julia Child",
+    "role": "Chef & Author",
+    "category": "Humor"
+  },
+  {
+    "id": 7,
+    "quote": "Food is our common ground, a universal experience.",
+    "author": "James Beard",
+    "role": "Chef & Cookbook Author",
+    "category": "Food Philosophy"
+  },
+  {
+    "id": 8,
+    "quote": "No one is born a great cook, one learns by doing.",
+    "author": "Julia Child",
+    "role": "Chef & Author",
+    "category": "Learning"
+  },
+  {
+    "id": 9,
+    "quote": "The secret of success in life is to eat what you like and let the food fight it out inside.",
+    "author": "Mark Twain",
+    "role": "Writer & Humorist",
+    "category": "Humor"
+  },
+  {
+    "id": 10,
+    "quote": "Cooking is all about people. Food is maybe the only universal thing that really has the power to bring everyone together.",
+    "author": "Guy Fieri",
+    "role": "Restaurateur & TV Host",
+    "category": "Community"
+  },
+  {
+    "id": 11,
+    "quote": "Tell me what you eat, and I will tell you what you are.",
+    "author": "Jean Anthelme Brillat-Savarin",
+    "role": "Gastronome & Writer",
+    "category": "Food Philosophy"
+  },
+  {
+    "id": 12,
+    "quote": "Life is a combination of magic and pasta.",
+    "author": "Federico Fellini",
+    "role": "Film Director",
+    "category": "Life"
+  }
+]
