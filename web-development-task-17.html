@@ -75,8 +75,13 @@
      <!-- reorganized string  -->
 
      <div>
-        <h1></h1>
+        <h1>Reorganize String</h1>
+        <label for="reorganizeString">Enter string to reorganize:</label>
+        <input type="text" id="reorganizeString" placeholder="e.g. aaabbc">
+        <button onclick="reorganizeString()">Reorganize</button>
+        <div id="reorganizedOutput"></div>
      </div>
+
     <script>
         //for the duplicate
         function RemoveAdjecentDuplicates(inputString) {
@@ -145,6 +150,49 @@
 
         }
    
+
+
+
+        // for reorganizing string
+
+        function reorganizeString() {
+            var inputString = document.getElementById("reorganizeString").value;
+            var charCount = {};
+            var maxHeap = [];
+
+            for (var char of inputString) {
+                charCount[char] = (charCount[char] || 0) + 1;
+            }
+
+            for (var char in charCount) {
+                maxHeap.push([char, charCount[char]]);
+            }
+            maxHeap.sort((a, b) => b[1] - a[1]);
+
+            var result = [];
+            var prevChar = null;
+            var prevCount = 0;
+
+            while (maxHeap.length > 0) {
+                var [char, count] = maxHeap.shift();
+                result.push(char);
+                count--;
+
+                if (prevChar && prevCount > 0) {
+                    maxHeap.push([prevChar, prevCount]);
+                    maxHeap.sort((a, b) => b[1] - a[1]);
+                }
+
+                prevChar = char;
+                prevCount = count;
+            }
+
+            if (result.length !== inputString.length) {
+                document.getElementById("reorganizedOutput").textContent = "Cannot reorganize string.";
+            } else {
+                document.getElementById("reorganizedOutput").textContent = "Reorganized: " + result.join("");
+            }
+        }
    </script>
 
 </body>
