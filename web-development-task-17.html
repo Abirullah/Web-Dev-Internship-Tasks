@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Adjacent Duplicates</title>
+    <style>
+        body {
+            background: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 80px;
+        }
+        .container {
+            width: 320px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <label for="inputBox">Enter a string:</label>
+        <input type="text" id="inputBox" placeholder="e.g. aaabccccd">
+        <button onclick="handleClick()">Submit</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function RemoveAdjecentDuplicates(inputString) {
+            var resultString = "";
+            for (var i = 0; i < inputString.length; i++) {
+                if (inputString[i] !== inputString[i + 1]) {
+                    resultString += inputString[i];
+                }
+                else i++;
+            }
+            return resultString;
+        }
+
+        function handleClick() {
+            var userInput = document.getElementById("inputBox").value;
+            var processedString = RemoveAdjecentDuplicates(userInput);
+            document.getElementById("output").textContent = "Result: " + processedString;
+        }
+    </script>
+
+</body>
+</html>
