@@ -35,14 +35,50 @@
 </head>
 <body>
 
+    <!-- duplicate removal -->
     <div class="container">
+        <h1>Remove Adjacent Duplicates</h1>
         <label for="inputBox">Enter a string:</label>
         <input type="text" id="inputBox" placeholder="e.g. aaabccccd">
         <button onclick="handleClick()">Submit</button>
         <div id="output"></div>
     </div>
 
+
+    <!-- anagram detection -->
+    <div>
+        <h1>Anagram Detection</h1>
+        <label for="string1">Enter first string:</label>
+        <input type="text" id="string1" placeholder="e.g. listen">
+        <label for="string2">Enter second string:</label>
+
+        <input type="text" id="string2" placeholder="e.g. silent">
+        <button onclick="checkAnagram()">Check Anagram</button>
+        <div id="anagramOutput"></div>
+
+
+    </div>
+
+
+
+    <!-- Decoding string -->
+
+     <div>
+        <h1>Decode String</h1>
+        <label for="encodedString">Enter encoded string:</label>
+        <input type="text" id="encodedString" placeholder="e.g. 3[a]2[bc]">
+        <button onclick="decodeString()">Decode</button>
+        <div id="decodedOutput"></div>
+
+     </div>
+
+     <!-- reorganized string  -->
+
+     <div>
+        <h1></h1>
+     </div>
     <script>
+        //for the duplicate
         function RemoveAdjecentDuplicates(inputString) {
             var resultString = "";
             for (var i = 0; i < inputString.length; i++) {
@@ -59,7 +95,57 @@
             var processedString = RemoveAdjecentDuplicates(userInput);
             document.getElementById("output").textContent = "Result: " + processedString;
         }
-    </script>
+
+        // for the anagram detection
+        function checkAnagram() {
+            var str1 = document.getElementById("string1").value.toLowerCase().replace(/\s/g, "");
+            var str2 = document.getElementById("string2").value.toLowerCase().replace(/\s/g, "");
+
+            if (str1.length !== str2.length) {
+                document.getElementById("anagramOutput").textContent = "Not anagrams.";
+                return;
+            }
+
+            var sortedStr1 = str1.split("").sort().join("");
+            var sortedStr2 = str2.split("").sort().join("");
+
+            if (sortedStr1 === sortedStr2) {
+                document.getElementById("anagramOutput").textContent = "Anagrams!";
+            } else {
+                document.getElementById("anagramOutput").textContent = "Not anagrams.";
+            }
+        }
+        
+   
+
+        // for the decoding string
+        function decodeString() {
+            var encodedString = document.getElementById("encodedString").value;
+            var stack = [];
+            var currentNum = 0;
+            var currentString = "";
+            
+            for (var i = 0; i < encodedString.length; i++) {
+                var char = encodedString[i];
+
+                if (!isNaN(char)) {
+                    currentNum = currentNum * 10 + parseInt(char);
+                } else if (char === '[') {
+                    stack.push([currentString, currentNum]);
+                    currentString = "";
+                    currentNum = 0;
+                } else if (char === ']') {
+                    var [prevString, num] = stack.pop();
+                    currentString = prevString + currentString.repeat(num);
+                } else {
+                    currentString += char;
+                }
+            }
+            document.getElementById("decodedOutput").textContent = "Decoded: " + currentString;
+
+        }
+   
+   </script>
 
 </body>
 </html>
